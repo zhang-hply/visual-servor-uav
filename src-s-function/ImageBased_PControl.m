@@ -52,7 +52,7 @@ Fdz = -(kr * (lp * u(3) + u(6)) - input_u3);
 
 A = -[cos(psi) -sin(psi) 0; sin(psi) cos(psi) 0; 0 0 1]' * [Fdx; Fdy; Fdz];
 Fdx = A(1); Fdy = A(2); Fdz = A(3);
-% u1 = sqrt(Fdx ^ 2 + Fdy ^ 2 + (Fdz-g ^ 2) * m;
+u1 = sqrt(Fdx ^ 2 + Fdy ^ 2 + (Fdz-g ^ 2) * m;
 % phid = atan(-Fdy / sqrt(Fdx ^ 2 + Fdz ^ 2));
 % thetad = atan(Fdx / Fdz);
 
