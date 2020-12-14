@@ -28,7 +28,7 @@ ts  = [0 0];
 function sys=mdlOutputs(t,x,u)
 ImageBased_init;
 DM = mu1 * D1 + D2;
-psi = u(12);
+psi = u(11);
 splusr1 = (lp * u(1) + u(4)); 
 splusr2 = (lp * u(2) + u(5)); 
 splusr3 = (lp * u(3) + u(6)); 
@@ -46,12 +46,13 @@ else
     end
 end
 
-Fdx = kr * (lp * u(1) + u(4)) - input_u1;
-Fdy = kr * (lp * u(2) + u(5)) - input_u2;
-Fdz = kr * (lp * u(3) + u(6)) - input_u3 - g;
+Fdx = -(kr * (lp * u(1) + u(4)) - input_u1);
+Fdy = -(kr * (lp * u(2) + u(5)) - input_u2);
+Fdz = -(kr * (lp * u(3) + u(6)) - input_u3);
 
-u1 = sqrt(Fdx ^ 2 + Fdy ^ 2 + Fdz ^ 2) * m;
-
+A = -[cos(psi) -sin(psi) 0; sin(psi) cos(psi) 0; 0 0 1]' * [Fdx; Fdy; Fdz];
+Fdx = A(1); Fdy = A(2); Fdz = A(3);
+% u1 = sqrt(Fdx ^ 2 + Fdy ^ 2 + (Fdz-g ^ 2) * m;
 % phid = atan(-Fdy / sqrt(Fdx ^ 2 + Fdz ^ 2));
 % thetad = atan(Fdx / Fdz);
 
